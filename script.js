@@ -3,6 +3,7 @@ const gridSize = 10; // 10 * 10
 
 const gridContainer = document.querySelector('.grid-container');
 
+const colorPicker = new Alwan('#color-picker');
 
 function getTestColor() {
 

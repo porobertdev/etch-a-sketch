@@ -18,3 +18,14 @@
 .row {
     display: flex;
 }
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+}
+
+#color-picker {
+    width: 67px;
+    height: 67px;
+    border-radius: 67px;
+}
