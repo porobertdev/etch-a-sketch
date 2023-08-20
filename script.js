@@ -56,7 +56,7 @@ function createGrid(size, resize) {
 }
 
 function createClickEvents() {
-    const options = document.querySelectorAll('.option');
+    const options = document.querySelectorAll('.option img');
 
     options.forEach( option => option.addEventListener('click', eventHandler));
     colorPicker.on('close', eventHandler); // when the color-picker's window closes
@@ -67,7 +67,7 @@ function createClickEvents() {
             draw('color');
         } else {
 
-            const className = event.target.classList;
+            const className = event.target.parentElement.classList;
             const option = className[0];
 
             if (className[1] == 'draw') {
