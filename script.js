@@ -91,3 +91,7 @@ function draw(mode) {
         return rgb.join();
     }
 }
+
+function reset() {
+    squares.forEach( square => square.style.backgroundColor = defaultColor);
+}
