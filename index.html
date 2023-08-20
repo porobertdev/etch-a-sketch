@@ -3,32 +3,47 @@
     <head>
         <meta charset="utf-8">
         <title>Etch-A-Sketch</title>
+        
+        <!-- FONT -->
+        <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+        
+        <!-- PROJECT's STYLE & SCRIPT -->
         <link rel="stylesheet" href="./style.css">
         <script defer src="./script.js"></script>
+        
         <!-- COLOR PICKER -->
-        <!-- Style -->
         <link rel="stylesheet" href="https://unpkg.com/alwan/dist/css/alwan.min.css" />
-        <!-- Script -->
         <script src="https://unpkg.com/alwan/dist/js/alwan.min.js"></script>
+        
         <!-- html2canva screenshot -->
         <script src="./html2canvas/html2canvas.min.js"></script>
     </head>
 
     <body>
         <div class="main-container">
-            <div class="toolbar">
-                <div id="color-picker">
-                </div>
-                <div class="RGB draw option">
-                </div>
-                <div class="brush draw option">
-                </div>
-                <div class="reset option">
-                </div>
-                <div class="share option">
-                </div>
+            <div id="title">
+                Etch-A-Sketch
             </div>
-            <div id="capture" class="grid-container">
+            <div class="middle-container">
+                <div class="toolbar">
+                    <div id="color-picker">
+                    </div>
+                    <div class="RGB draw option">
+                        <img src="./img/rgb.svg">
+                    </div>
+                    <div class="brush draw option">
+                        <img src="./img/brush.svg">
+                    </div>
+                    <div class="reset option">
+                        <img src="./img/reset.svg">
+                    </div>
+                    <div class="share option">
+                        <img src="./img/share.svg">
+                    </div>
+                </div>
+
+                <div id="capture" class="grid-container">
+                </div>
             </div>
         </div>
     </body>

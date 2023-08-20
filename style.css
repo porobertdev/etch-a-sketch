@@ -1,18 +1,49 @@
+body {
+    background-color: #869EF4;
+}
+
+#title {
+    width: 600px;
+    height: 130px;
+    margin-left: 120px;
+
+    font-family: 'Indie Flower';
+    font-size: 90px;
+    font-weight: 900;
+    color: #FFFFFF;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* StackOverflow */
+    text-shadow: 2px 2px 25px #6A5EFF, 2px 2px 25px #6A5EFF, 2px 2px 25px #6A5EFF, 2px 2px 25px #6A5EFF;
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: #6A5EFF;
+}
+
 .main-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+.middle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .grid-container {
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
     border: 3px solid black;
+    box-shadow: 10px 10px 5px hsla(0, 0%, 0%, 25%);
 }
 
 .grid-square {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
 }
   
 .row {
@@ -22,6 +53,8 @@
 .toolbar {
     display: flex;
     flex-direction: column;
+    gap: 25px;
+    margin-right: 53px;
 }
 
 #color-picker,
@@ -30,4 +63,9 @@
     height: 67px;
     border-radius: 67px;
     background-color: #4F54D3; /* doesn't affect color-picker */
+
+    /* center the images */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
