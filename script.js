@@ -3,7 +3,7 @@ const minGridSize = 10;
 const maxGridSize = 65;
 let gridSize = 10; // 10 * 10
 const defaultColor = '#E7E7E7';
-const colorPicker = new Alwan('#color-picker');
+const colorPicker = new Alwan('#color-picker', {color: 'rgb(253,197,145)'});
 const gridContainer = document.querySelector('.grid-container');
 
 createGrid(gridSize);
