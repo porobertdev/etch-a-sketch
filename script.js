@@ -1,10 +1,11 @@
 // TO DO: let user choose grid size
 const gridSize = 10; // 10 * 10
 const defaultColor = '#E7E7E7';
-
+const colorPicker = new Alwan('#color-picker');
 const gridContainer = document.querySelector('.grid-container');
 
-const colorPicker = new Alwan('#color-picker');
+createGrid(gridSize);
+const squares = document.querySelectorAll('.grid-square');
 
 function createGrid(size) {
 
@@ -61,8 +62,6 @@ function createClickEvents() {
 }
 
 function draw(mode) {
-    const squares = document.querySelectorAll('.grid-square');
-
     squares.forEach( square => square.addEventListener('mouseover', colorHandler));
 
     function colorHandler(event) {
@@ -92,5 +91,3 @@ function draw(mode) {
         return rgb.join();
     }
 }
-
-createGrid(gridSize);
