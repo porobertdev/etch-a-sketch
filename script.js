@@ -1,28 +1,10 @@
 // TO DO: let user choose grid size
 const gridSize = 10; // 10 * 10
+const defaultColor = '#E7E7E7';
 
 const gridContainer = document.querySelector('.grid-container');
 
 const colorPicker = new Alwan('#color-picker');
-
-function getTestColor() {
-
-    /*
-        Helper function to test the grid until I add options
-        to allow user selecting color.
-    */
-
-    const colors = [
-        'red', 'blue', 'yellow', 'black',
-        'green', 'purple', 'pink', 'cyan'
-    ];
-
-    function getRandomColor(colors) {
-        return colors[Math.floor( Math.random() * colors.length - 1 / 10)];
-    }
-
-    return getRandomColor(colors);
-}
 
 function createGrid(size) {
 
@@ -45,7 +27,7 @@ function createGrid(size) {
         for (j = 0; j < size; j++) {
             const square = document.createElement('div');
             square.classList.add('grid-square');
-            square.style.backgroundColor = getTestColor();
+            square.style.backgroundColor = defaultColor;
             row.appendChild(square);
         }
     }
@@ -95,7 +77,7 @@ function draw(mode) {
                 break;
 
             case (mode == 'brush'):
-                this.style.backgroundColor = '#E7E7E7';
+                this.style.backgroundColor = defaultColor;
 
         }
     }
