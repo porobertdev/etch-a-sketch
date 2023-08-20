@@ -69,3 +69,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.option:hover {
+    background-color: #4842a0;
+    transition: 500ms;
+}
