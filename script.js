@@ -95,3 +95,10 @@ function draw(mode) {
 function reset() {
     squares.forEach( square => square.style.backgroundColor = defaultColor);
 }
+
+function share() {
+    html2canvas(document.querySelector("#capture")).then(canvas => {
+        // Thanks to Stackoverflow: https://stackoverflow.com/a/59462270
+        canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
+    });
+}
