@@ -1,13 +1,23 @@
 // TO DO: let user choose grid size
-const gridSize = 10; // 10 * 10
+const minGridSize = 10;
+const maxGridSize = 65;
+let gridSize = 10; // 10 * 10
 const defaultColor = '#E7E7E7';
 const colorPicker = new Alwan('#color-picker');
 const gridContainer = document.querySelector('.grid-container');
 
 createGrid(gridSize);
-const squares = document.querySelectorAll('.grid-square');
+resize();
+let squares = document.querySelectorAll('.grid-square');
 
-function createGrid(size) {
+function createGrid(size, resize) {
+
+    // remove existing rows if grid was resized
+    if (resize) {
+        console.log('resizing detected...')
+        const rows = document.querySelectorAll('.row');
+        rows.forEach( row => gridContainer.removeChild(row));
+    }
 
     /*
         Grid is size * size (rows * columns).
@@ -29,6 +39,15 @@ function createGrid(size) {
             const square = document.createElement('div');
             square.classList.add('grid-square');
             square.style.backgroundColor = defaultColor;
+            
+            if (resize) {
+                const gridComp = window.getComputedStyle(gridContainer);
+                const width = +(gridComp.getPropertyValue('width').replace('px', ''));
+                const height = +(gridComp.getPropertyValue('height').replace('px', ''));
+        
+                square.style.width = `${width / gridSize}px`;
+                square.style.height = `${height / gridSize}px`;
+            }
             row.appendChild(square);
         }
     }
@@ -44,6 +63,7 @@ function createClickEvents() {
 
     function eventHandler(event) {
         if (event.type == 'close') { // it's the color picker
+            console.log('okkk');
             draw('color');
         } else {
 
@@ -61,7 +81,31 @@ function createClickEvents() {
     }
 }
 
+function resize() {
+    gridContainer.addEventListener('wheel', scrollHandler);
+
+    function scrollHandler(event) {
+        
+        if (event.wheelDelta > 0){ // wheel up: positive +168
+            if (gridSize < maxGridSize) gridSize += 5;
+            console.log(`wheel up: ${gridSize}`)
+        } else if (event.wheelDelta < 0) { // wheel down: negative -168);
+            if (gridSize > minGridSize) gridSize -= 5;
+            console.log(`wheel down: ${gridSize}`);
+        }
+
+        // no point to recreate the grid if it's min/max size
+        if (gridSize > minGridSize && gridSize < maxGridSize) {
+            createGrid(gridSize, true);
+        }
+    }
+}
+
 function draw(mode) {
+    // need to reselect the squares after resizing grid
+    // TO DO: find a better solution
+    squares = document.querySelectorAll('.grid-square');
+    
     squares.forEach( square => square.addEventListener('mouseover', colorHandler));
 
     function colorHandler(event) {
