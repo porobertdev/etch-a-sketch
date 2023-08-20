@@ -78,4 +78,37 @@ function createClickEvents() {
     }
 }
 
+function draw(mode) {
+    const squares = document.querySelectorAll('.grid-square');
+
+    squares.forEach( square => square.addEventListener('mouseover', colorHandler));
+
+    function colorHandler(event) {
+
+        switch(true) {
+            case (mode == 'color'):
+                this.style.backgroundColor = colorPicker.getColor().rgb;
+                break;
+
+            case (mode == 'RGB'):
+                this.style.backgroundColor = `rgb(${getRandomRGB()})`;
+                break;
+
+            case (mode == 'brush'):
+                this.style.backgroundColor = '#E7E7E7';
+
+        }
+    }
+
+    function getRandomRGB() {
+        let rgb = [];
+
+        for (i = 1; i <= 3; i++) {
+            rgb.push(Math.floor(Math.random() * 255));
+        }
+
+        return rgb.join();
+    }
+}
+
 createGrid(gridSize);
