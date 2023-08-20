@@ -24,8 +24,10 @@
     flex-direction: column;
 }
 
-#color-picker {
+#color-picker,
+.option {
     width: 67px;
     height: 67px;
     border-radius: 67px;
+    background-color: #4F54D3; /* doesn't affect color-picker */
 }

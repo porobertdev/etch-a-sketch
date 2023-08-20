@@ -49,6 +49,33 @@ function createGrid(size) {
             row.appendChild(square);
         }
     }
+
+    createClickEvents();
+}
+
+function createClickEvents() {
+    const options = document.querySelectorAll('.option');
+
+    options.forEach( option => option.addEventListener('click', eventHandler));
+    colorPicker.on('close', eventHandler); // when the color-picker's window closes
+
+    function eventHandler(event) {
+        if (event.type == 'close') { // it's the color picker
+            draw('color');
+        } else {
+
+            const className = event.target.classList;
+            const option = className[0];
+
+            if (className[1] == 'draw') {
+                draw(option) // RGB or brush mode
+            } else if (option == 'reset') {
+                reset();
+            } else if (option == 'share') {
+                share();
+            }
+        }
+    }
 }
 
 createGrid(gridSize);
