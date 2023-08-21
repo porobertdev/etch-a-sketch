@@ -1,5 +1,6 @@
 body {
     background-color: #869EF4;
+    user-select: none;
 }
 
 #title {
