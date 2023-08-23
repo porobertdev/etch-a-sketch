@@ -1,6 +1,6 @@
 // TO DO: let user choose grid size
-const minGridSize = 10;
-const maxGridSize = 65;
+const minGridSize = 5; // 10; -increment
+const maxGridSize = 70; // 65; +increment
 let gridSize = 10; // 10 * 10
 const defaultColor = '#E7E7E7';
 const colorPicker = new Alwan('#color-picker', {color: 'rgb(253,197,145)'});
