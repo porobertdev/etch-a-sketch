@@ -75,3 +75,40 @@ body {
     background-color: #4842a0;
     transition: 500ms;
 }
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    width: 55px;
+    height: 40px;
+    visibility: hidden;
+
+    background-color: #E7E7E7;
+    color: #6A5EFF;
+    font-family: "Indie Flower";
+    font-weight: 900;
+    border-radius: 10px;
+
+    /* position */
+    position: absolute;
+    z-index: 1;
+    right: 100%;
+    margin-right: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* transition effect */
+    opacity: 0;
+    transition: opacity 800ms;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+
+    /* transition */
+    opacity: 1;
+}
