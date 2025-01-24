@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import Square from './Square';
 
-const Row = ({ squares, rowIndex }) => {
+interface Row {
+    squares: string[];
+    rowIndex: number;
+}
+
+const Row = ({ squares, rowIndex }: Row) => {
     const row = `row-${rowIndex}`;
     const [coloredSquares, setColoredSquares] = useState([]);
 
@@ -18,12 +23,13 @@ const Row = ({ squares, rowIndex }) => {
             {squares.map((square, index) => {
                 const column = `column-${index}`;
                 const className = row + '-' + column;
+                const isColored = coloredSquares.includes(className);
 
                 return (
                     <Square
                         index={className}
                         mouseOverHandler={() => colorHandler(className)}
-                        colored={coloredSquares.includes(className)}
+                        colored={isColored}
                     />
                 );
             })}
