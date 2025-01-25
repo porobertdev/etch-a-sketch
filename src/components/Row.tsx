@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Square from './Square';
 
 interface Row {
@@ -8,30 +8,16 @@ interface Row {
 
 const Row = ({ squares, rowIndex }: Row) => {
     const row = `row-${rowIndex}`;
-    const [coloredSquares, setColoredSquares] = useState([]);
-
-    const colorHandler = (className) => {
-        console.log('🚀 ~ colorHandler ~ className:', className);
-        setColoredSquares([...coloredSquares, className]);
-    };
 
     // reset colors
-    const resetGrid = () => setColoredSquares([]);
+    // const resetGrid = () => setColoredSquares([]);
 
     return (
         <div key={row} className="row flex">
             {squares.map((square, index) => {
                 const column = `column-${index}`;
                 const className = row + '-' + column;
-                const isColored = coloredSquares.includes(className);
-
-                return (
-                    <Square
-                        index={className}
-                        mouseOverHandler={() => colorHandler(className)}
-                        colored={isColored}
-                    />
-                );
+                return <Square index={className} />;
             })}
         </div>
     );
