@@ -1,41 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import Row from './Row';
 
 const MIN_GRID_SIZE = 10;
 const MAX_GRID_SIZE = 70;
 
-const SketchContainer = () => {
+interface SketchContainerProps {
+    selectedColor: string;
+}
+
+/**
+ * Container component for the Etch-a-Sketch grid
+ * Memoized with React.memo to prevent re-renders when parent re-renders with same props
+ * 
+ * Re-renders occur when:
+ * 1. selectedColor prop changes
+ * 2. gridSize state changes (via scroll wheel)
+ * 
+ * Optimizations:
+ * - squares array is memoized to prevent recreation on every render
+ * - scrollHandler is memoized to maintain referential equality
+ * - Component itself is memoized to prevent re-renders when selectedColor hasn't changed
+ */
+const SketchContainer: React.FC<SketchContainerProps> = ({ selectedColor }) => {
+    // Local state for grid dimensions
     const [gridSize, setGridSize] = useState(MIN_GRID_SIZE);
 
-    console.log('🚀 ~ SketchContainer ~ gridSize:', gridSize);
+    // Memoize the squares array to prevent recreation on every render
+    // Only updates when gridSize changes
+    const squares = useMemo(() => Array(gridSize).fill('item'), [gridSize]);
 
-    const squares = Array(gridSize).fill('item');
-    // console.log('🚀 ~ SketchContainer ~ arr:', arr);
-
-    const scrollHandler = (event) => {
-        if (event.nativeEvent.wheelDelta > 0) {
-            // wheel up: positive +168
-            if (gridSize < MAX_GRID_SIZE) setGridSize(gridSize + 5);
-            console.log(`wheel up: ${gridSize}`);
-        } else if (event.nativeEvent.wheelDelta < 0) {
-            // wheel down: negative -168);
-            if (gridSize > MIN_GRID_SIZE) setGridSize(gridSize - 5);
-            console.log(`wheel down: ${gridSize}`);
+    // Memoize the scroll handler to maintain referential equality
+    // Only updates when gridSize changes
+    const scrollHandler = useCallback((event: React.WheelEvent<HTMLDivElement>) => {
+        if (event.deltaY < 0) {
+            // Wheel up
+            if (gridSize < MAX_GRID_SIZE) setGridSize((prev) => prev + 5);
+        } else if (event.deltaY > 0) {
+            // Wheel down
+            if (gridSize > MIN_GRID_SIZE) setGridSize((prev) => prev - 5);
         }
-
-        // resetGrid();
-    };
+    }, [gridSize]);
 
     return (
         <div
             className="grid-container w-[450px] h-[450px] grid auto-rows-[minmax(0,2fr)] shadow-custom border-[3px] border-solid border-black"
             onWheel={scrollHandler}
         >
-            {squares.map((item, index) => {
-                return <Row squares={squares} rowIndex={index} />;
-            })}
+            {squares.map((_, index) => (
+                <Row 
+                    key={index} 
+                    rowIndex={index} 
+                    squares={squares} 
+                    selectedColor={selectedColor}
+                />
+            ))}
         </div>
     );
 };
 
-export default SketchContainer;
+export default React.memo(SketchContainer);
