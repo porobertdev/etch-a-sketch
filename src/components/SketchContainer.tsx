@@ -21,8 +21,8 @@ const SketchContainer = () => {
         set size with JS because there's misaligned starting position
         when its changed with CSS.
         */
-        canva.width = 450;
-        canva.height = 450;
+        canva.width = 900;
+        canva.height = window.innerHeight - window.screenY;
     });
 
     return (
