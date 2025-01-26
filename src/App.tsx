@@ -1,7 +1,7 @@
 import React from 'react';
 import SketchContainer from './components/SketchContainer';
 import Toolbar from './components/Toolbar';
-import { ColorContextProvider } from './contexts/ColorContext';
+import { ColorContextProvider } from './contexts/SketchContext';
 
 function App() {
     return (

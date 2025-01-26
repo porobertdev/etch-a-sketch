@@ -7,10 +7,10 @@ interface ColorContextType {
     updateLineWidth: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ColorContext = createContext<ColorContextType | null>(null);
+const SketchContext = createContext<ColorContextType | null>(null);
 
 const useColor = () => {
-    const context = useContext(ColorContext);
+    const context = useContext(SketchContext);
     if (!context) {
         throw new Error('useColor must be used within a ColorContextProvider');
     }
@@ -31,11 +31,11 @@ const ColorContextProvider = ({ children }) => {
     };
 
     return (
-        <ColorContext.Provider
+        <SketchContext.Provider
             value={{ colorRef, updateColor, lineWidthRef, updateLineWidth }}
         >
             {children}
-        </ColorContext.Provider>
+        </SketchContext.Provider>
     );
 };
 

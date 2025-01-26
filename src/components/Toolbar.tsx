@@ -1,6 +1,6 @@
 import { Slider } from 'antd';
 import React from 'react';
-import { useColor } from '../contexts/ColorContext';
+import { useColor } from '../contexts/SketchContext';
 import ColorPicker from './ColorPicker';
 
 interface ToolbarProps {

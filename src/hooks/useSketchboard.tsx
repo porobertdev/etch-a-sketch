@@ -1,4 +1,4 @@
-import { useColor } from '../contexts/ColorContext';
+import { useColor } from '../contexts/SketchContext';
 
 type CanvaType = HTMLCanvasElement;
 type CanvaContextType = CanvasRenderingContext2D;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { HexColorPicker } from 'react-colorful';
-import { useColor } from '../contexts/ColorContext';
+import { useColor } from '../contexts/SketchContext';
 
 const ColorPicker = () => {
     const { colorRef, updateColor } = useColor();
