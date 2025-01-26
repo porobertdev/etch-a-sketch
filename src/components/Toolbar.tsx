@@ -3,6 +3,7 @@ import React from 'react';
 import { useColor } from '../contexts/SketchContext';
 import Brush from './Brush';
 import ColorPicker from './ColorPicker';
+import Reset from './Reset';
 
 const Toolbar = () => {
     const { updateLineWidth } = useColor();
@@ -10,7 +11,7 @@ const Toolbar = () => {
     return (
         <div
             id="toolbar"
-            className="bg-gray-100 rounded-sm w-fit h-max px-5 py-5"
+            className="bg-gray-100 rounded-sm w-fit h-max px-5 py-5 flex flex-col gap-4"
         >
             <ColorPicker />
             <Slider
@@ -22,6 +23,7 @@ const Toolbar = () => {
                 defaultValue={5}
             />
             <Brush />
+            <Reset />
         </div>
     );
 };

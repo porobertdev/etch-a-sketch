@@ -1,10 +1,11 @@
-import React, { createContext, useContext, useRef } from 'react';
+import React, { createContext, useContext, useRef, useState } from 'react';
 
 interface SketchContextType {
     colorRef: React.MutableRefObject<string>;
     updateColor: React.Dispatch<React.SetStateAction<string>>;
     lineWidthRef: React.MutableRefObject<number>;
     updateLineWidth: React.Dispatch<React.SetStateAction<number>>;
+    setIsReset: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SketchContext = createContext<SketchContextType | null>(null);
@@ -21,6 +22,7 @@ const SketchContextProvider = ({ children }) => {
     console.log('RENDERING CONTEXT');
     const colorRef = useRef<string>('#ffe0c3');
     const lineWidthRef = useRef<number>(5);
+    const [isReset, setIsReset] = useState<boolean>(false);
 
     const updateColor = (newColor) => {
         colorRef.current = newColor;
@@ -32,7 +34,13 @@ const SketchContextProvider = ({ children }) => {
 
     return (
         <SketchContext.Provider
-            value={{ colorRef, updateColor, lineWidthRef, updateLineWidth }}
+            value={{
+                colorRef,
+                updateColor,
+                lineWidthRef,
+                updateLineWidth,
+                setIsReset,
+            }}
         >
             {children}
         </SketchContext.Provider>

@@ -13,7 +13,7 @@ const ColorPicker = () => {
     useClickOutside(popover, close); // Pass the typed ref
 
     return (
-        <div className="picker relative">
+        <div className="picker relative mx-auto">
             <button
                 className="swatch w-[50px] h-[50px] rounded-full"
                 style={{ backgroundColor: colorRef.current }}
