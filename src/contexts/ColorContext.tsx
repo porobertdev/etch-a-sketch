@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useRef } from 'react';
 
 interface ColorContextType {
-    color: string;
-    setColor: React.Dispatch<React.SetStateAction<string>>;
+    colorRef: React.MutableRefObject<string>;
+    updateColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ColorContext = createContext<ColorContextType | null>(null);
@@ -16,11 +16,15 @@ const useColor = () => {
 };
 
 const ColorContextProvider = ({ children }) => {
-    const [color, setColor] = useState<string>('#ffe0c3');
     console.log('RENDERING CONTEXT');
+    const colorRef = useRef<string>('#ffe0c3');
+
+    const updateColor = (newColor) => {
+        colorRef.current = newColor;
+    };
 
     return (
-        <ColorContext.Provider value={{ color, setColor }}>
+        <ColorContext.Provider value={{ colorRef, updateColor }}>
             {children}
         </ColorContext.Provider>
     );
