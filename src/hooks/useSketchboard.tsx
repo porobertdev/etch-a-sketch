@@ -5,7 +5,7 @@ type CanvaContextType = CanvasRenderingContext2D;
 
 const useSketchboard = () => {
     console.log('[useSketchBoard] - RENDERING...');
-    const { colorRef } = useColor();
+    const { colorRef, lineWidthRef } = useColor();
 
     let canva: CanvaType;
     let ctx: CanvaContextType | null; // ref: https://stackoverflow.com/a/68212560
@@ -51,7 +51,8 @@ const useSketchboard = () => {
         if (ctx) {
             // draw
             ctx.beginPath();
-            ctx.lineWidth = 5;
+            console.log('🚀 ~ draw ~ lineWidthRef:', lineWidthRef);
+            ctx.lineWidth = lineWidthRef.current;
             ctx.lineCap = 'round';
             ctx.strokeStyle = colorRef.current; // #ACD3ED
             ctx.moveTo(coords.x, coords.y);
@@ -62,7 +63,11 @@ const useSketchboard = () => {
         }
     };
 
-    return { startDrawing, stopDrawing, draw };
+    return {
+        startDrawing,
+        stopDrawing,
+        draw,
+    };
 };
 
 export default useSketchboard;
