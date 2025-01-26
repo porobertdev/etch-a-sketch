@@ -1,23 +1,23 @@
 import React, { createContext, useContext, useRef } from 'react';
 
-interface ColorContextType {
+interface SketchContextType {
     colorRef: React.MutableRefObject<string>;
     updateColor: React.Dispatch<React.SetStateAction<string>>;
     lineWidthRef: React.MutableRefObject<number>;
     updateLineWidth: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SketchContext = createContext<ColorContextType | null>(null);
+const SketchContext = createContext<SketchContextType | null>(null);
 
 const useColor = () => {
     const context = useContext(SketchContext);
     if (!context) {
-        throw new Error('useColor must be used within a ColorContextProvider');
+        throw new Error('useColor must be used within a SketchContextProvider');
     }
     return context; // Now guaranteed to be non-null
 };
 
-const ColorContextProvider = ({ children }) => {
+const SketchContextProvider = ({ children }) => {
     console.log('RENDERING CONTEXT');
     const colorRef = useRef<string>('#ffe0c3');
     const lineWidthRef = useRef<number>(5);
@@ -39,4 +39,4 @@ const ColorContextProvider = ({ children }) => {
     );
 };
 
-export { ColorContextProvider, ColorContextType, useColor };
+export { SketchContextProvider, useColor };

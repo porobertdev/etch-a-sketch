@@ -8,7 +8,10 @@ const Toolbar = () => {
     const { updateLineWidth, updateColor } = useColor();
 
     return (
-        <div id="toolbar">
+        <div
+            id="toolbar"
+            className="bg-gray-100 rounded-sm w-fit h-max px-5 py-5"
+        >
             <ColorPicker />
             <Slider
                 onChange={(value) => {
@@ -23,7 +26,7 @@ const Toolbar = () => {
                 variant="filled"
                 color="default"
                 onClick={() => updateColor('white')}
-                style={{ backgroundColor: ' #869ef4' }}
+                style={{ backgroundColor: '#6a5eff' }}
                 size="large"
             >
                 <img src={Brush} alt="brush icon" className="w-1/2" />

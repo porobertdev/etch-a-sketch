@@ -22,7 +22,7 @@ const ColorPicker = () => {
 
             {isOpen && (
                 <div
-                    className="popover absolute z-1 right-0 top-5"
+                    className="popover absolute z-1 top-5"
                     ref={popover}
                 >
                     <HexColorPicker

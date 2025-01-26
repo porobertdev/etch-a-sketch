@@ -28,7 +28,7 @@ const SketchContainer = () => {
     return (
         <canvas
             id="sketchBoard"
-            className="shadow-custom border-[3px] border-solid border-black"
+            className="bg-white shadow-custom border-[3px] border-solid border-black"
             onMouseDown={(e) => startDrawing(e)}
             onMouseUp={stopDrawing}
             onMouseMove={(e) => draw(e)}

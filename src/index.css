@@ -1,13 +1,15 @@
 @import url(https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap);
 @import 'tailwindcss';
 
-body {
-    font-family: 'Indie Flower';
-}
-
 @theme {
     --color-light-purple: #869ef4;
     --color-dark-purple: #6a5eff;
     --light-gray: #e7e7e7;
     --shadow-custom: 10px 10px 5px hsla(0, 0%, 0%, 25%);
+}
+
+body {
+    font-family: 'Indie Flower';
+    background-color: var(--color-light-purple);
+    margin: 1rem;
 }
