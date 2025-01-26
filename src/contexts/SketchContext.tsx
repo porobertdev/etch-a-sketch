@@ -20,7 +20,7 @@ const useColor = () => {
 
 const SketchContextProvider = ({ children }) => {
     console.log('RENDERING CONTEXT');
-    const colorRef = useRef<string>('#ffe0c3');
+    const colorRef = useRef<string>('#869ef4');
     const lineWidthRef = useRef<number>(5);
     const [isReset, setIsReset] = useState<boolean>(false);
 
