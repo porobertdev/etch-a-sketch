@@ -4,6 +4,7 @@ type CanvaType = HTMLCanvasElement;
 type CanvaContextType = CanvasRenderingContext2D;
 
 const useSketchboard = () => {
+    console.log('[useSketchBoard] - RENDERING...');
     const { color } = useColor();
 
     let canva: CanvaType;
@@ -43,11 +44,9 @@ const useSketchboard = () => {
     };
 
     const draw = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-        console.log('🚀 ~ draw ~ event:', event);
         if (!isDrawing) return;
 
-        console.log('DRAWING...');
-        console.log('[COORDINATES]', coords.x, coords.y);
+        console.log('[DRAWING] - [COORDINATES]', coords.x, coords.y);
 
         if (ctx) {
             // draw

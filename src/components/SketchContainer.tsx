@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import useSketchboard from '../hooks/useSketchboard';
 
 const SketchContainer = () => {
+    console.log('[SketchContainer] - RENDERING...');
     const { startDrawing, stopDrawing, draw } = useSketchboard();
 
     useEffect(() => {
+        console.log('[useEffect] - [SketchContainer] - RENDERING...');
         /*
         define it as HTMLCanvasElement because the implicit HTMLElement
         doesn't have width/height props.
