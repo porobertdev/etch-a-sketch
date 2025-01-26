@@ -28,6 +28,7 @@ const ColorPicker = () => {
                     <HexColorPicker
                         color={colorRef.current}
                         onChange={(e) => updateColor(e)}
+                        onMouseLeave={() => close()}
                     />
                 </div>
             )}
