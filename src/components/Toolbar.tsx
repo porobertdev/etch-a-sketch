@@ -1,11 +1,11 @@
-import { Button, Slider } from 'antd';
+import { Slider } from 'antd';
 import React from 'react';
-import Brush from '../assets/icons/brush.svg';
 import { useColor } from '../contexts/SketchContext';
+import Brush from './Brush';
 import ColorPicker from './ColorPicker';
 
 const Toolbar = () => {
-    const { updateLineWidth, updateColor } = useColor();
+    const { updateLineWidth } = useColor();
 
     return (
         <div
@@ -21,16 +21,7 @@ const Toolbar = () => {
                 max={30}
                 defaultValue={5}
             />
-            <Button
-                shape="default"
-                variant="filled"
-                color="default"
-                onClick={() => updateColor('white')}
-                style={{ backgroundColor: '#6a5eff' }}
-                size="large"
-            >
-                <img src={Brush} alt="brush icon" className="w-1/2" />
-            </Button>
+            <Brush />
         </div>
     );
 };
