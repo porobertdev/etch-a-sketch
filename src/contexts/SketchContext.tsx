@@ -5,6 +5,7 @@ interface SketchContextType {
     updateColor: React.Dispatch<React.SetStateAction<string>>;
     lineWidthRef: React.MutableRefObject<number>;
     updateLineWidth: React.Dispatch<React.SetStateAction<number>>;
+    isReset: boolean,
     setIsReset: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -39,6 +40,7 @@ const SketchContextProvider = ({ children }) => {
                 updateColor,
                 lineWidthRef,
                 updateLineWidth,
+                isReset,
                 setIsReset,
             }}
         >

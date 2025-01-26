@@ -4,14 +4,14 @@ import ResetIcon from '../assets/icons/reset.svg';
 import { useColor } from '../contexts/SketchContext';
 
 const Brush = () => {
-    const { setIsReset } = useColor();
+    const { isReset, setIsReset } = useColor();
 
     return (
         <Button
             shape="default"
             variant="filled"
             color="default"
-            onClick={() => setIsReset(true)}
+            onClick={() => setIsReset(!isReset)}
             style={{ backgroundColor: '#6a5eff' }}
             size="large"
         >
