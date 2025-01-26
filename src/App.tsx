@@ -1,16 +1,20 @@
 import React from 'react';
+import ColorPicker from './components/ColorPicker';
 import SketchContainer from './components/SketchContainer';
 import Toolbar from './components/Toolbar';
 import { ColorContextProvider } from './contexts/ColorContext';
+
 function App() {
     return (
-        <main className="flex justify-center gap-10">
-            <ColorContextProvider>
-                <Toolbar />
-                <div id="app" className="bg-light-purple w-[450px] h-[450px]">
+        <main>
+            <div id="app" className="flex justify-center gap-10">
+                <ColorContextProvider>
+                    <Toolbar>
+                        <ColorPicker />
+                    </Toolbar>
                     <SketchContainer />
-                </div>
-            </ColorContextProvider>
+                </ColorContextProvider>
+            </div>
         </main>
     );
 }

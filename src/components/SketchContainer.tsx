@@ -1,40 +1,36 @@
-import React, { useState } from 'react';
-import Row from './Row';
-
-const MIN_GRID_SIZE = 10;
-const MAX_GRID_SIZE = 70;
+import React, { useEffect } from 'react';
+import useSketchboard from '../hooks/useSketchboard';
 
 const SketchContainer = () => {
-    const [gridSize, setGridSize] = useState(MIN_GRID_SIZE);
+    const { startDrawing, stopDrawing, draw } = useSketchboard();
 
-    console.log('🚀 ~ SketchContainer ~ gridSize:', gridSize);
+    useEffect(() => {
+        /*
+        define it as HTMLCanvasElement because the implicit HTMLElement
+        doesn't have width/height props.
 
-    const squares = Array(gridSize).fill('item');
-    // console.log('🚀 ~ SketchContainer ~ arr:', arr);
+        TS-Error: Property 'height' does not exist on type 'HTMLElement'.
+        */
+        const canva = document.getElementById(
+            'sketchBoard'
+        ) as HTMLCanvasElement;
 
-    const scrollHandler = (event) => {
-        if (event.nativeEvent.wheelDelta > 0) {
-            // wheel up: positive +168
-            if (gridSize < MAX_GRID_SIZE) setGridSize(gridSize + 5);
-            console.log(`wheel up: ${gridSize}`);
-        } else if (event.nativeEvent.wheelDelta < 0) {
-            // wheel down: negative -168);
-            if (gridSize > MIN_GRID_SIZE) setGridSize(gridSize - 5);
-            console.log(`wheel down: ${gridSize}`);
-        }
-
-        // resetGrid();
-    };
+        /*
+        set size with JS because there's misaligned starting position
+        when its changed with CSS.
+        */
+        canva.width = 450;
+        canva.height = 450;
+    });
 
     return (
-        <div
-            className="grid-container w-[450px] h-[450px] grid auto-rows-[minmax(0,2fr)] shadow-custom border-[3px] border-solid border-black"
-            onWheel={scrollHandler}
-        >
-            {squares.map((item, index) => {
-                return <Row squares={squares} rowIndex={index} />;
-            })}
-        </div>
+        <canvas
+            id="sketchBoard"
+            className="shadow-custom border-[3px] border-solid border-black"
+            onMouseDown={(e) => startDrawing(e)}
+            onMouseUp={stopDrawing}
+            onMouseMove={(e) => draw(e)}
+        ></canvas>
     );
 };
 

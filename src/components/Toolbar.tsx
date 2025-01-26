@@ -1,13 +1,11 @@
 import React from 'react';
-import { useColor } from '../contexts/ColorContext';
-import ColorPicker from './ColorPicker';
 
-const Toolbar = () => {
-    const { color, setColor } = useColor();
-    console.log('🚀 ~ Toolbar ~ setColor:', setColor);
-    console.log('🚀 ~ Toolbar ~ color:', color);
+interface ToolbarProps {
+    children: React.ReactNode;
+}
 
-    return <ColorPicker defaultColor={color} updateColor={setColor} />;
+const Toolbar = ({ children }: ToolbarProps) => {
+    return <div id="toolbar">{children}</div>;
 };
 
 export default Toolbar;

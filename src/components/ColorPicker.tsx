@@ -1,12 +1,13 @@
 import React from 'react';
 import { HexColorPicker } from 'react-colorful';
+import { useColor } from '../contexts/ColorContext';
 
-interface ColorPicker {
-    defaultColor: string;
-}
+const ColorPicker = () => {
+    const { color, setColor } = useColor();
 
-const ColorPicker = ({defaultColor, updateColor}) => {
-    return <HexColorPicker color={defaultColor} onChange={updateColor} />;
+    // We need `?` to get rid of TS error because it might be null
+    // Ref: https://stackoverflow.com/a/58401023
+    return <HexColorPicker color={color} onChange={setColor} />;
 };
 
 export default ColorPicker;
