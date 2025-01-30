@@ -1,9 +1,31 @@
 import React, { useEffect } from 'react';
 import useSketchboard from '../hooks/useSketchboard';
+import useWebSocket from '../hooks/useWebSocket';
 
 const SketchContainer = () => {
     console.log('[SketchContainer] - RENDERING...');
-    const { startDrawing, stopDrawing, draw } = useSketchboard();
+    const { isDrawing, startDrawing, stopDrawing, draw } = useSketchboard();
+    const webSocket = useWebSocket();
+    // const { colorRef, lineWidthRef } = useColor();
+    
+
+    
+    const renderMsg = (event) => {
+            const json = JSON.parse(event.data);
+            console.log("🚀 ~ renderMsg ~ json:", json)
+
+            isDrawing.current = true;
+            draw(json)
+            
+        }
+        
+    webSocket.onmessage = (e) => {
+            // console.log("🚀 ~ useWebSocket ~ e:", e)
+            // const data = JSON.parse(e.data);
+            // console.log('[CLIENT] received data', data);
+        
+            renderMsg(e);
+        };
 
     useEffect(() => {
         console.log('[useEffect] - [SketchContainer] - RENDERING...');
@@ -31,7 +53,19 @@ const SketchContainer = () => {
             className="bg-white shadow-custom border-[3px] border-solid border-black"
             onMouseDown={(e) => startDrawing(e)}
             onMouseUp={stopDrawing}
-            onMouseMove={(e) => draw(e)}
+            onMouseMove={(e) => {
+                if (isDrawing.current) {
+                draw(e)
+                // startDrawing(e)
+                const event = {
+                    clientX: e.clientX,
+                    clientY: e.clientY,
+                }
+                console.log("🚀 ~ SketchContainer ~ event:", event)
+                // startDrawing(event);
+                webSocket.send(JSON.stringify(event))
+            }
+            }}
         ></canvas>
     );
 };

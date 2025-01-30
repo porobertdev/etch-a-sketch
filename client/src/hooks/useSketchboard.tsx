@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useColor } from '../contexts/SketchContext';
 
 type CanvaType = HTMLCanvasElement;
@@ -6,12 +7,14 @@ type CanvaContextType = CanvasRenderingContext2D;
 const useSketchboard = () => {
     console.log('[useSketchBoard] - RENDERING...');
     const { colorRef, lineWidthRef } = useColor();
+    const isDrawing = useRef(false);
 
     let canva: CanvaType;
     let ctx: CanvaContextType | null; // ref: https://stackoverflow.com/a/68212560
 
     const coords = { x: 0, y: 0 };
-    let isDrawing = false;
+
+    const toggleIsDrawing = (drawing) => isDrawing.current = !drawing; 
 
     // TS type REF: https://stackoverflow.com/a/44764395
     const updateMouseCoords = (event: React.MouseEvent) => {
@@ -26,25 +29,29 @@ const useSketchboard = () => {
     const startDrawing = (
         event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
     ) => {
+        console.log("🚀 ~ useSketchboard ~ event:", event)
         console.log('START DRAWING');
 
-        isDrawing = true;
+        isDrawing.current = true;
+
         if (!canva) {
             canva = event.target as CanvaType;
             ctx = canva.getContext('2d');
         }
 
-        updateMouseCoords(event);
+        updateMouseCoords(event.clientX ? {clientX: event.clientX, clientY: event.clientY} : event);
     };
 
     const stopDrawing = () => {
         console.log('STOP DRAWING');
         // setIsDrawing(false);
-        isDrawing = false;
+        // toggleIsDrawing(isDrawing.current);
+        isDrawing.current = false;
+        
     };
 
     const draw = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-        if (!isDrawing) return;
+        if (!isDrawing.current) return;
 
         console.log('[DRAWING] - [COORDINATES]', coords.x, coords.y);
 
@@ -64,6 +71,7 @@ const useSketchboard = () => {
     };
 
     return {
+        isDrawing,
         startDrawing,
         stopDrawing,
         draw,
