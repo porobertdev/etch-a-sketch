@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import useSketchboard from '../hooks/useSketchboard';
 import useWebSocket from '../hooks/useWebSocket';
+import stringifyEvent from '../utils/stringifyEvent';
 
 const SketchContainer = () => {
     console.log('[SketchContainer] - RENDERING...');
@@ -38,13 +39,9 @@ const SketchContainer = () => {
                 if (isDrawing.current) {
                 draw(e)
                 // startDrawing(e)
-                const event = {
-                    clientX: e.clientX,
-                    clientY: e.clientY,
-                }
                 console.log("🚀 ~ SketchContainer ~ event:", event)
                 // startDrawing(event);
-                webSocket.send(JSON.stringify(event))
+                webSocket.send(stringifyEvent(e))
             }
             }}
         ></canvas>

@@ -1,5 +1,5 @@
 // StackOverflow: https://stackoverflow.com/a/34519193
-const stringifyEvent = (e) => {
+const stringifyEvent = (e: any) => {
     if (e) {
         const obj = {
           eventName: e.toString(),
