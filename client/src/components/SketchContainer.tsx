@@ -8,25 +8,6 @@ const SketchContainer = () => {
     const webSocket = useWebSocket();
     // const { colorRef, lineWidthRef } = useColor();
     
-
-    
-    const renderMsg = (event) => {
-            const json = JSON.parse(event.data);
-            console.log("🚀 ~ renderMsg ~ json:", json)
-
-            isDrawing.current = true;
-            draw(json)
-            
-        }
-        
-    webSocket.onmessage = (e) => {
-            // console.log("🚀 ~ useWebSocket ~ e:", e)
-            // const data = JSON.parse(e.data);
-            // console.log('[CLIENT] received data', data);
-        
-            renderMsg(e);
-        };
-
     useEffect(() => {
         console.log('[useEffect] - [SketchContainer] - RENDERING...');
         /*
