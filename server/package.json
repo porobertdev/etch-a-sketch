@@ -27,12 +27,15 @@
     "dependencies": {
         "eslint": "^9.19.0",
         "express": "^4.21.2",
+        "npm": "^11.1.0",
         "prettier": "^3.4.2",
+        "remove": "^0.1.5",
         "ws": "^8.18.0"
     },
     "devDependencies": {
         "@types/express": "^5.0.0",
         "@types/node": "^22.10.10",
+        "@types/ws": "^8.5.14",
         "typescript": "^5.7.3"
     }
 }
