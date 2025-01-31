@@ -61,6 +61,7 @@ const useSketchboard = () => {
 
         console.log("🚀 ~ draw ~ ctx:", ctx)
         if (ctx) {
+            console.log("🚀 ~ draw ~ lineWidthRef:", lineWidthRef.current, colorRef.current)
             // draw
             ctx.beginPath();
             console.log('🚀 ~ draw ~ lineWidthRef:', lineWidthRef);

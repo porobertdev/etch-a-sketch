@@ -45,7 +45,8 @@ const stringifyEvent = (e: any) => {
         };
     
         // console.log(JSON.stringify(obj, null, 2));
-        return JSON.stringify(obj, null, 2)
+        // return JSON.stringify(obj, null, 2)
+        return obj;
       }
   }
 

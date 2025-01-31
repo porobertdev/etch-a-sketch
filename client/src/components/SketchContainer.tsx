@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
+import { useColor } from '../contexts/SketchContext';
 import useSketchboard from '../hooks/useSketchboard';
 import useWebSocket from '../hooks/useWebSocket';
 import stringifyEvent from '../utils/stringifyEvent';
 
+
 const SketchContainer = () => {
     console.log('[SketchContainer] - RENDERING...');
     const { isDrawing, startDrawing, stopDrawing, draw } = useSketchboard();
+    const { colorRef, lineWidthRef } = useColor();
+    console.log("🚀 ~ SketchContainer ~ colorRef:", colorRef)
+    
     const webSocket = useWebSocket();
     // const { colorRef, lineWidthRef } = useColor();
     
@@ -38,10 +43,12 @@ const SketchContainer = () => {
             onMouseMove={(e) => {
                 if (isDrawing.current) {
                 draw(e)
-                // startDrawing(e)
-                console.log("🚀 ~ SketchContainer ~ event:", event)
-                // startDrawing(event);
-                webSocket.send(stringifyEvent(e))
+                const obj = {
+                    ...stringifyEvent(e),
+                    color: colorRef.current,
+                    lineWidth: lineWidthRef.current
+                };
+                webSocket.send(JSON.stringify(obj, null, 2));
             }
             }}
         ></canvas>
