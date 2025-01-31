@@ -2,7 +2,11 @@ import { useColor } from '../contexts/SketchContext';
 import useSketchboard from './useSketchboard';
 
 const useWebSocket = () => {
-    const ws = new WebSocket('ws://localhost:3000/');
+    const ws = new WebSocket(
+        window.location.host === 'localhost:3000'
+            ? 'ws:localhost:3000'
+            : 'wss://etch-a-sketch-peach.vercel.app/'
+    );
     const { draw, startDrawing, stopDrawing } = useSketchboard();
     const { updateColor, updateLineWidth } = useColor();
 
