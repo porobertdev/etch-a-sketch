@@ -2,7 +2,7 @@ import useSketchboard from "./useSketchboard";
 
 const useWebSocket = () => {
     const ws = new WebSocket('ws://localhost:3000/');
-    const {draw, isDrawing} = useSketchboard();
+    const {draw, isDrawing, startDrawing, stopDrawing} = useSketchboard();
     console.log("🚀 ~ App ~ ws:", ws)
 
     ws.onopen = (e) => {
@@ -10,13 +10,12 @@ const useWebSocket = () => {
     };
 
     ws.onmessage = (e) => {
-        console.log('[CLIENT] received data', e.data);
-    
         const data = JSON.parse(e.data);
-        console.log("🚀 ~ useWebSocket ~ data:", data)
-
-        isDrawing.current = true;
+        console.log('[CLIENT] received data', data);
+    
+        startDrawing(data);
         draw(data);
+        stopDrawing();
     };
 
     ws.onclose = (e) => {

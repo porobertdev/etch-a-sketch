@@ -35,7 +35,8 @@ const useSketchboard = () => {
         isDrawing.current = true;
 
         if (!canva) {
-            canva = event.target as CanvaType;
+            canva = (typeof event.target === 'string') ? document.getElementById('sketchBoard') as CanvaType : event.target as CanvaType;
+            console.log("🚀 ~ useSketchboard ~ canva:", canva)
             ctx = canva.getContext('2d');
         }
 
@@ -51,10 +52,14 @@ const useSketchboard = () => {
     };
 
     const draw = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+        console.log("🚀 ~ draw ~ isDrawing:", isDrawing)
         if (!isDrawing.current) return;
+
+        // updateMouseCoords(event);
 
         console.log('[DRAWING] - [COORDINATES]', coords.x, coords.y);
 
+        console.log("🚀 ~ draw ~ ctx:", ctx)
         if (ctx) {
             // draw
             ctx.beginPath();
