@@ -21,10 +21,7 @@ const ColorPicker = () => {
             />
 
             {isOpen && (
-                <div
-                    className="popover absolute z-1 top-5"
-                    ref={popover}
-                >
+                <div className="popover absolute z-1 top-5" ref={popover}>
                     <HexColorPicker
                         color={colorRef.current}
                         onChange={(e) => updateColor(e)}

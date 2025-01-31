@@ -4,16 +4,15 @@ import useSketchboard from '../hooks/useSketchboard';
 import useWebSocket from '../hooks/useWebSocket';
 import stringifyEvent from '../utils/stringifyEvent';
 
-
 const SketchContainer = () => {
     console.log('[SketchContainer] - RENDERING...');
     const { isDrawing, startDrawing, stopDrawing, draw } = useSketchboard();
     const { colorRef, lineWidthRef } = useColor();
-    console.log("🚀 ~ SketchContainer ~ colorRef:", colorRef)
-    
+    console.log('🚀 ~ SketchContainer ~ colorRef:', colorRef);
+
     const webSocket = useWebSocket();
     // const { colorRef, lineWidthRef } = useColor();
-    
+
     useEffect(() => {
         console.log('[useEffect] - [SketchContainer] - RENDERING...');
         /*
@@ -42,14 +41,14 @@ const SketchContainer = () => {
             onMouseUp={stopDrawing}
             onMouseMove={(e) => {
                 if (isDrawing.current) {
-                draw(e)
-                const obj = {
-                    ...stringifyEvent(e),
-                    color: colorRef.current,
-                    lineWidth: lineWidthRef.current
-                };
-                webSocket.send(JSON.stringify(obj, null, 2));
-            }
+                    draw(e);
+                    const obj = {
+                        ...stringifyEvent(e),
+                        color: colorRef.current,
+                        lineWidth: lineWidthRef.current,
+                    };
+                    webSocket.send(JSON.stringify(obj, null, 2));
+                }
             }}
         ></canvas>
     );

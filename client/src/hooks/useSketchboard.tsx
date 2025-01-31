@@ -14,7 +14,7 @@ const useSketchboard = () => {
 
     const coords = { x: 0, y: 0 };
 
-    const toggleIsDrawing = (drawing) => isDrawing.current = !drawing; 
+    const toggleIsDrawing = (drawing) => (isDrawing.current = !drawing);
 
     // TS type REF: https://stackoverflow.com/a/44764395
     const updateMouseCoords = (event: React.MouseEvent) => {
@@ -29,18 +29,25 @@ const useSketchboard = () => {
     const startDrawing = (
         event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
     ) => {
-        console.log("🚀 ~ useSketchboard ~ event:", event)
+        console.log('🚀 ~ useSketchboard ~ event:', event);
         console.log('START DRAWING');
 
         isDrawing.current = true;
 
         if (!canva) {
-            canva = (typeof event.target === 'string') ? document.getElementById('sketchBoard') as CanvaType : event.target as CanvaType;
-            console.log("🚀 ~ useSketchboard ~ canva:", canva)
+            canva =
+                typeof event.target === 'string'
+                    ? (document.getElementById('sketchBoard') as CanvaType)
+                    : (event.target as CanvaType);
+            console.log('🚀 ~ useSketchboard ~ canva:', canva);
             ctx = canva.getContext('2d');
         }
 
-        updateMouseCoords(event.clientX ? {clientX: event.clientX, clientY: event.clientY} : event);
+        updateMouseCoords(
+            event.clientX
+                ? { clientX: event.clientX, clientY: event.clientY }
+                : event
+        );
     };
 
     const stopDrawing = () => {
@@ -48,20 +55,23 @@ const useSketchboard = () => {
         // setIsDrawing(false);
         // toggleIsDrawing(isDrawing.current);
         isDrawing.current = false;
-        
     };
 
     const draw = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-        console.log("🚀 ~ draw ~ isDrawing:", isDrawing)
+        console.log('🚀 ~ draw ~ isDrawing:', isDrawing);
         if (!isDrawing.current) return;
 
         // updateMouseCoords(event);
 
         console.log('[DRAWING] - [COORDINATES]', coords.x, coords.y);
 
-        console.log("🚀 ~ draw ~ ctx:", ctx)
+        console.log('🚀 ~ draw ~ ctx:', ctx);
         if (ctx) {
-            console.log("🚀 ~ draw ~ lineWidthRef:", lineWidthRef.current, colorRef.current)
+            console.log(
+                '🚀 ~ draw ~ lineWidthRef:',
+                lineWidthRef.current,
+                colorRef.current
+            );
             // draw
             ctx.beginPath();
             console.log('🚀 ~ draw ~ lineWidthRef:', lineWidthRef);

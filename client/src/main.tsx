@@ -6,6 +6,6 @@ import './index.css';
 // ref: https://stackoverflow.com/a/66358693
 createRoot(document.getElementById('root') as HTMLElement).render(
     // <StrictMode>
-        <App />
+    <App />
     // </StrictMode>
 );
