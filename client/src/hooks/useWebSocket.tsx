@@ -5,7 +5,7 @@ const useWebSocket = () => {
     const ws = new WebSocket(
         window.location.host === 'localhost:3000'
             ? 'ws:localhost:3000'
-            : 'wss://etch-a-sketch-peach.vercel.app/'
+            : 'wss://etch-a-sketch-backend.porobert.dev/'
     );
     const { draw, startDrawing, stopDrawing } = useSketchboard();
     const { updateColor, updateLineWidth } = useColor();

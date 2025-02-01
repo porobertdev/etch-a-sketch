@@ -1,0 +1,29 @@
+name: Deploy Backend to Hetzner VPS
+
+on:
+    push:
+        paths:
+            - 'server/**' # Trigger workflow only if files inside 'server' change
+        branches:
+            - canva # Deploy only when pushing to the main branch
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Deploy to VPS
+              uses: appleboy/ssh-action@v0.1.7
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  script: |
+                      cd /dev/etch-a-sketch  # Replace with the server folder path on your VPS
+                      git pull origin canva
+                      cd server
+                      npm install
+                      pm2 restart app.ts  # Assuming you're using PM2 to manage the server
