@@ -4,6 +4,7 @@ import { useColor } from '../contexts/SketchContext';
 import Brush from './Brush';
 import ColorPicker from './ColorPicker';
 import Reset from './Reset';
+import Share from './Share';
 
 const Toolbar = () => {
     const { updateLineWidth } = useColor();
@@ -24,6 +25,7 @@ const Toolbar = () => {
             />
             <Brush />
             <Reset />
+            <Share />
         </div>
     );
 };
