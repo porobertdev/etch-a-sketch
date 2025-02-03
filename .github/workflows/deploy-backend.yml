@@ -25,5 +25,6 @@ jobs:
                       cd /dev/etch-a-sketch  # Replace with the server folder path on your VPS
                       git pull origin canva
                       cd server
+                      npx tsc
                       npm install
                       pm2 restart app.ts  # Assuming you're using PM2 to manage the server
