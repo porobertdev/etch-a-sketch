@@ -15,7 +15,7 @@ const Brush = () => {
             style={{ backgroundColor: '#6a5eff' }}
             size="large"
         >
-            <img src={BrushIcon} alt="brush icon" className="w-1/2" />
+            <img src={BrushIcon} alt="brush icon" className="w-full" />
         </Button>
     );
 };

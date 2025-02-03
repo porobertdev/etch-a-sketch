@@ -34,7 +34,7 @@ const Share = () => {
             style={{ backgroundColor: '#6a5eff' }}
             size="large"
         >
-            <img src={ShareIcon} alt="share icon" className="w-1/2" />
+            <img src={ShareIcon} alt="share icon" className="w-full" />
         </Button>
     );
 };
