@@ -11,7 +11,6 @@ const SketchContainer = () => {
     console.log('🚀 ~ SketchContainer ~ colorRef:', colorRef);
 
     const webSocket = useWebSocket();
-    // const { colorRef, lineWidthRef } = useColor();
 
     useEffect(() => {
         console.log('[useEffect] - [SketchContainer] - RENDERING...');

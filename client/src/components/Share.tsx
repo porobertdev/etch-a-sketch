@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Tooltip } from 'antd';
 import React from 'react';
 import ShareIcon from '../assets/icons/share.svg';
 
@@ -26,16 +26,23 @@ const copyToClipboard = () => {
 
 const Share = () => {
     return (
-        <Button
-            shape="default"
-            variant="filled"
-            color="default"
-            onClick={copyToClipboard}
-            style={{ backgroundColor: '#6a5eff' }}
-            size="large"
-        >
-            <img src={ShareIcon} alt="share icon" className="w-full" />
-        </Button>
+        <Tooltip title="Copy to clipboard">
+            <Button
+                shape="default"
+                variant="filled"
+                color="default"
+                onClick={copyToClipboard}
+                style={{
+                    backgroundColor: '#6a5eff',
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '100%',
+                }}
+                size="large"
+            >
+                <img src={ShareIcon} alt="share icon" className="w-full" />
+            </Button>
+        </Tooltip>
     );
 };
 
