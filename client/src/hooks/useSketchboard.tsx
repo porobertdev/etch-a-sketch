@@ -27,6 +27,7 @@ const useSketchboard = () => {
     const startDrawing = (
         event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
     ) => {
+        console.log('🚀 ~ useSketchboard ~ event:', event);
         console.log('START DRAWING');
 
         isDrawing.current = true;
@@ -44,6 +45,9 @@ const useSketchboard = () => {
                 ? { clientX: event.clientX, clientY: event.clientY }
                 : event
         );
+
+        // allow drawing a dot if it's just a click without moving the mouse.
+        if (event.type === 'mousedown') draw(event);
     };
 
     const stopDrawing = () => {
