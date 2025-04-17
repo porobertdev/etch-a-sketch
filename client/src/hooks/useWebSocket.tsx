@@ -3,7 +3,7 @@ import useSketchboard from './useSketchboard';
 
 const useWebSocket = () => {
     const ws = new WebSocket(
-        window.location.host === 'localhost:3000'
+        window.location.host === 'localhost:5173'
             ? 'ws:localhost:3000'
             : 'wss://etch-a-sketch-backend.porobert.dev/'
     );
