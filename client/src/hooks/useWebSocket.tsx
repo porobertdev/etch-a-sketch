@@ -8,7 +8,7 @@ const useWebSocket = () => {
             : 'wss://etch-a-sketch-backend.porobert.dev/'
     );
     const { draw, startDrawing, stopDrawing } = useSketchboard();
-    const { updateColor, updateLineWidth } = useColor();
+    const { updateColor, updateLineWidth, isReset, setIsReset } = useColor();
 
     ws.onopen = (e) => {
         console.log('[CLIENT] connected to WebSocket Server');
@@ -17,6 +17,12 @@ const useWebSocket = () => {
     ws.onmessage = (e) => {
         const data = JSON.parse(e.data);
         console.log('[CLIENT] received data', data);
+
+        if (data.reset) {
+            console.log('[CLIENT] reset canva');
+            setIsReset(!isReset);
+            return;
+        }
 
         startDrawing(data);
         updateColor(data.color);

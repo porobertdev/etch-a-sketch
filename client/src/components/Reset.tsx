@@ -2,9 +2,11 @@ import { Button, Tooltip } from 'antd';
 import React from 'react';
 import ResetIcon from '../assets/icons/reset.svg';
 import { useColor } from '../contexts/SketchContext';
+import useWebSocket from '../hooks/useWebSocket';
 
 const Brush = () => {
     const { isReset, setIsReset } = useColor();
+    const webSocket = useWebSocket();
 
     return (
         <Tooltip title="Reset canva">
@@ -12,7 +14,10 @@ const Brush = () => {
                 shape="default"
                 variant="filled"
                 color="default"
-                onClick={() => setIsReset(!isReset)}
+                onClick={() => {
+                    setIsReset(!isReset);
+                    webSocket.send(JSON.stringify({ reset: true }));
+                }}
                 style={{
                     backgroundColor: '#6a5eff',
                     width: '60px',
