@@ -38,6 +38,7 @@ const SketchContainer = () => {
             className="bg-white shadow-custom border-[3px] border-solid border-black"
             onMouseDown={(e) => startDrawing(e)}
             onMouseUp={stopDrawing}
+            onMouseOut={stopDrawing}
             onMouseMove={(e) => {
                 if (isDrawing.current) {
                     draw(e);
